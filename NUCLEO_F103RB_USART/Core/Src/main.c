@@ -25,7 +25,7 @@
 
 
 // ref: https://daiskadark.blogspot.com/2013/07/c-printf-scanf-uart.html
-// option -> target -> check Use MicroLIB allow USART to output
+// option -> target -> check Use MicroLIB allow USART to output // https://kknews.cc/zh-tw/tech/oyvn68p.html
 #include <stdio.h>
 #include <string.h>
 
