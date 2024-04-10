@@ -1,0 +1,25 @@
+--cpu Cortex-M3
+"nucelo_f103rb_adc_dma\startup_stm32f103xb.o"
+"nucelo_f103rb_adc_dma\main.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_it.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_msp.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_gpio_ex.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_adc.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_adc_ex.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_rcc.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_rcc_ex.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_gpio.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_dma.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_cortex.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_pwr.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_flash.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_flash_ex.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_exti.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_tim.o"
+"nucelo_f103rb_adc_dma\stm32f1xx_hal_tim_ex.o"
+"nucelo_f103rb_adc_dma\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "NUCELO_F103RB_ADC_DMA\NUCELO_F103RB_ADC_DMA.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "NUCELO_F103RB_ADC_DMA.map" -o NUCELO_F103RB_ADC_DMA\NUCELO_F103RB_ADC_DMA.axf
