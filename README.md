@@ -1,2 +1,2 @@
-# NUCLEO_F103RBT6_Projects
+# NUCLEO-F103RBT6 Projects
 Firmware development on STM32 board
