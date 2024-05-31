@@ -1,37 +1,40 @@
+/* 
+ref :
+[1] https://www.makdev.net/2022/06/stm32-i2c-lcd1602.html
+[2] https://blog.csdn.net/CCCDeric/article/details/116932481
+*/
 #include "main.h"
 #include "i2c.h"
 
-#define LCD_ADDRESS	0x04E
+#define LCD_ADDRESS	0x4E
 
 void LCD_Send_Cmd(char cmd)
 {
-    char data_h,data_l;
-    uint8_t frame_data[4];
-    data_h = (cmd&0xf0);
-    data_l = ((cmd <<4)&0xf0);
-    frame_data[0] = data_h | 0x0C;    //en=1, rs=0
-    frame_data[1] = data_h | 0x08;    //en=0, rs=0
-    frame_data[2] = data_l | 0x0C;    //en=1, rs=0
-    frame_data[3] = data_l | 0x08;    //en=0, rs=0
-	
-    HAL_I2C_Master_Transmit(&hi2c1,LCD_ADDRESS,(uint8_t *)frame_data,4,0x100);
-    //HAL_Delay(1);
+	char data_h, data_l;
+	uint8_t frame_data[4];
+	data_h = cmd & 0xf0;
+	data_l = (cmd << 4) & 0xf0;
+	frame_data[0] = data_h | 0x0C; // 0000 1100    // EN=1, RS=0
+	frame_data[1] = data_h | 0x08; // 0000 1000    // EN=0, RS=0
+	frame_data[2] = data_l | 0x0C; // 0000 1100    // EN=1, RS=0
+	frame_data[3] = data_l | 0x08; // 0000 1000    // EN=0, RS=0
+
+	HAL_I2C_Master_Transmit(&hi2c1, LCD_ADDRESS, (uint8_t *)frame_data, 4, 0x100);
 }
 
 
 void LCD_Send_Data(char data)
 {
-    char data_h,data_l;
+    char data_h, data_l;
     uint8_t frame_data[4];
-    data_h = (data&0xf0);
-    data_l = ((data <<4)&0xf0);
-    frame_data[0] = data_h | 0x0D;    //en=1, rs=1
-    frame_data[1] = data_h | 0x09;    //en=0, rs=1
-    frame_data[2] = data_l | 0x0D;    //en=1, rs=1
-    frame_data[3] = data_l | 0x09;    //en=0, rs=1
+    data_h = data & 0xf0;
+    data_l = (data << 4) & 0xf0;
+    frame_data[0] = data_h | 0x0D; // 0000 1101    // EN=1, RS=1
+    frame_data[1] = data_h | 0x09; // 0000 1001    // EN=0, RS=1
+    frame_data[2] = data_l | 0x0D; // 0000 1101    // EN=1, RS=1
+    frame_data[3] = data_l | 0x09; // 0000 1001    // EN=0, RS=1
 
-    HAL_I2C_Master_Transmit(&hi2c1,LCD_ADDRESS,(uint8_t *)frame_data,4,0x100);
-    //HAL_Delay(1);
+    HAL_I2C_Master_Transmit(&hi2c1, LCD_ADDRESS,( uint8_t *)frame_data, 4, 0x100);
 }
 
 
@@ -55,15 +58,15 @@ void LCD_Init()
     HAL_Delay(10);
 
 
-    LCD_Send_Cmd(0x28);        //function set
+    LCD_Send_Cmd(0x28); // function set
     HAL_Delay(1);
-    LCD_Send_Cmd(0x08);        //Display on/off
+    LCD_Send_Cmd(0x08); // Display on/off
     HAL_Delay(1);
-    LCD_Send_Cmd(0x01);        //clear display
+    LCD_Send_Cmd(0x01); // clear display
     HAL_Delay(1);
-    LCD_Send_Cmd(0x06);        //Enter mode
+    LCD_Send_Cmd(0x06); // Enter mode
     HAL_Delay(1);
-    LCD_Send_Cmd(0x0C);        //Display on/off
+    LCD_Send_Cmd(0x0C); // Display on/off
     HAL_Delay(1);
 
 
